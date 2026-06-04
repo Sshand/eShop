@@ -76,6 +76,12 @@ var webApp = builder.AddProject<Projects.WebApp>("webapp", launchProfileName)
     .WaitFor(identityApi)
     .WithEnvironment("IdentityUrl", identityEndpoint);
 
+builder.AddViteApp("reactapp", "../react-vite-app")
+    .WithPnpm()
+    //.WithHttpEndpoint(port: 3000, name: "react-endpoint")
+    .WithExternalHttpEndpoints()
+    .WaitFor(catalogApi);
+
 // set to true if you want to use OpenAI
 bool useOpenAI = false;
 if (useOpenAI)

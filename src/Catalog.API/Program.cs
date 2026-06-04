@@ -4,6 +4,17 @@ builder.AddServiceDefaults();
 builder.AddApplicationServices();
 builder.Services.AddProblemDetails();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyAllowSpecificOrigins",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 var withApiVersioning = builder.Services.AddApiVersioning(options =>
 {
     // Include "api-supported-versions" and "api-deprecated-versions" headers in all responses
@@ -17,6 +28,8 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 
 app.UseStatusCodePages();
+
+app.UseCors("MyAllowSpecificOrigins");
 
 app.MapCatalogApi();
 
