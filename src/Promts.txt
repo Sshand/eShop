@@ -1,0 +1,25 @@
+Prompt:
+Directory react-vite-app contains web project based on React Router v7. 
+Directory WebApp contains web project based on .NET Blazor. 
+WebApp project uses Blazor components from WebAppComponents library.
+In  react-vite-app, add  new React Server component called CatalogListItem. 
+This component should display similar  fields and have similar styles as the CatalogListItem component from WebAppComponents.
+
+Result:
+
+Done
+Added a new React Server component for react-vite-app:
+
+app/catalog/CatalogListItem.server.tsx
+renders name, price, and pictureUrl
+uses anchor styling similar to CatalogListItem.razor
+app/catalog/CatalogListItem.module.css
+matches the Blazor component’s responsive layout and hover styling
+Updated:
+
+app/catalog/CatalogList.tsx
+imports and renders CatalogListItem
+displays the same item fields with list layout
+app/routes/home.tsx
+passes loaderData.data into CatalogList
+Verified with pnpm typecheck.

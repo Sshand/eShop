@@ -11,7 +11,7 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader() {
   const url =
-    "http://localhost:5222/api/catalog/items?PageSize=10&PageIndex=0&name=&type=1&brand=1&api-version=2.0";
+    "http://localhost:5222/api/catalog/items?PageSize=10&PageIndex=0&name=&api-version=2.0";
   const response = await fetch(url);
   const result = await response.json();
   console.log("RES:");
@@ -20,5 +20,5 @@ export async function loader() {
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return <CatalogList count={loaderData.count} />;
+  return <CatalogList count={loaderData.count} data={loaderData.data} />;
 }
